@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>PexME</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+    <script type="text/javascript" src="assets/scripts/debug.js"></script>
+    <script type="text/javascript" src="https://<YourPexipServer>/static/webrtc/js/pexrtc.js"></script>
+   
+    <script type="text/javascript" src="https://unpkg.com/@zxing/library@latest"></script>
+    <script type="text/javascript" src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.28.2.min.js"></script>
+
+    <script type="text/javascript" src="assets/scripts/storage.js" async defer></script>
+    <script type="text/javascript" src="assets/scripts/ui.js" async defer></script>
+    <script type="text/javascript" src="assets/scripts/preflight.js" async defer></script>
+    <script type="text/javascript" src="assets/scripts/call.js" async defer></script>
+    
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js" async defer></script>
+
+
+    <div class="pageContainer" id="pageContainer">
+      <div><img class="logo" id="logo" src="assets/images/emptyImage.png" alt=""></img></div>
+      
+      <div><img class="footer_logo" id="footer_logo" src="assets/images/footer_logo.png" alt="" onclick=""></img></div>
+      
+      <div class="row homeMessageContainer" id="homeMessageContainer">
+        <div class="column"><img id="scanIcon" class="scanIcon" src="assets/images/scanMe.svg" alt=""/></div>
+        <div class="column homeMessage" id="homeMessage" ></div>
+      </div>
+      
+      <h1 class="statusZone" id="statusZone"></h1>
+
+      <div class="settingsButton" id="settingsButton" onClick="showSettings()" >
+        <i class="fa-solid fa-gear"></i>
+      </div>
+
+
+      <div class="clock" id="clock">
+        <h1 class="time" id="time"></h1>
+        <h2 class="date" id="date"></h2>
+      </div>
+
+      <div class="newControls">
+        <div>
+          <button id="audioMuteButton" class="btn-square btn-green" onClick="toggleMicMute()" hidden>
+            <i class="fa-solid fa-microphone" style="margin:15px;"></i>
+            Audio
+         </button>
+         </div>
+         
+         <div>
+         <button id="videoMuteButton" class="btn-square btn-blue" onClick="toggleVidMute()" hidden>
+          <i class="fa-solid fa-video" style="margin:15px;"></i>
+            Video
+         </button>
+         </div>
+         
+         <div>
+         <button id="LayoutButton"class="btn-square btn-orange" hidden>
+          <i class="fa-solid fa-expand" style="margin:15px;"></i>
+           Layout
+         </button>
+         </div>
+        
+         <div>
+         <button id="endCallButton" class="btn-square btn-red" onClick="hangup()" hidden>
+          <i class="fa-solid fa-xmark" style="margin:15px;"></i>
+           End Call
+         </button>
+         </div>
+         
+         <div>
+         <button id="settingsButton" class="btn-square btn-black" onClick="showSettings()">
+          <i class="fa-solid fa-gear" style="margin:15px;"></i>
+           Settings
+         </button>
+         </div>
+    
+     </div>
+      
+
+      <div class="callContainer" id="callContainer" style="display: none">
+        <div class="callVideoContainer">
+          <video id="farEndVideo" autoplay="autoplay" poster="assets/images/pexipPoster.jpg"></video>
+        </div>
+        <div class="callVideoControls">
+          <div class="callVideoControl" onClick="toggleMicMute()">
+            <i id="micMute" class="fa-solid fa-microphone"></i>
+          </div>
+          <div class="callVideoControl" onClick="toggleVidMute()">
+            <i id="vidMute" class="fa-solid fa-video"></i>
+          </div>
+          <div class="callVideoControl" onClick="hangup()">
+            <i class="fa-solid fa-circle-xmark"></i>
+          </div>
+        </div>
+        
+        <div class="callPinRequestContainer" id="callPinRequestContainer">
+          <div class="callPinRequestWindow">
+            <div class="callPinTitle" id="callPinTitle">...</div>
+
+            <div class="callPinContent">
+              <div class="callPinContentHead">Your Pin</div>
+              <div class="callPinContentBody">
+                <input type="text" id="pin" />
+              </div>
+            </div>
+
+            <div class="callPinContentButton">
+              <button onClick="enterCall()">You may need to enter a PIN</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="callSelfviewContainer"
+        id="callSelfviewContainer"
+      >
+        <video id="selfViewVideo" autoplay poster="assets/images/emptyImage.png" muted style="border: 1px solid white"></video>
+      </div>
+
+      <div class="settingsContainer" id="settingsContainer" style="display: none">
+        <div class="settingsPopup">
+          <div class="settingsPopupTitle">Settings</div>
+
+            <div class="settingsPopupContent">
+
+            <div class="settingsPopupHead">Pexip Infinity Server</div>
+            <div class="settingsPopupBody">
+              <input type="text" id="pexServer" name="pexServer" value="" placeholder="" onkeyup="savePexipServer(this.value)"/>
+            </div>
+
+          
+            <div class="settingsPopupHead">Background Image (URL)</div>
+            <div class="settingsPopupBody">
+              <input type="text" id="pexBackgroundUrl" name="pexBackgroundUrl" placeholder="Background: 1920x1080 PNG or JPG image location" onkeyup="savePexipBackground(this.value)"/>
+            </div>
+
+            <div class="settingsPopupHead">Logo Image (URL)</div>
+            <div class="settingsPopupBody">
+              <input type="text" id="pexLogoUrl" name="pexLogoUrl" placeholder="Logo: Transparent PNG image location" onkeyup="savePexipLogo(this.value)"/>
+            </div>
+
+            <div class="settingsPopupHead">Custom Message (Home Screen) </div>
+            <div class="settingsPopupBody">
+              <input type="text" id="pexHomeMessage" name="pexHomeMessage" value="Scan your QR code to access your appointment" placeholder="Custom home screen message" onkeyup="savePexipCustomHomeMessage(this.value)"/>
+            </div>
+
+                          
+            <div class="settingsPopupHead">Device Name (Home Screen)</div>
+            <div class="settingsPopupBody">
+              <input type="text" id="pexDeviceName" name="pexDeviceName" value="pexme" placeholder="" onkeyup="savePexipDeviceName(this.value)"/>
+            </div>
+
+            <div class="settingsPopupHead" style="display: none;">Maximum Call Duration (mins)*</div>
+            <div class="settingsPopupBody" hidden>
+              <select name="pexMaxCallDuration" id="pexMaxCallDuration" value=0 onchange="savePexipCallDuration(this.value)">
+                <option value=480>480</option>
+                <option value=240>240</option>
+                <option value=120>120</option>
+                <option value=60>60</option>
+                <option value=30>30</option>
+                <option value=0 selected=0>0</option>
+              </select>
+            </div>
+
+            <div class="settingsPopupHead">Local Layout*</div>
+            <div class="settingsPopupBody">
+              <select name="pexLayout" id="pexLayout" value=1>
+                <option value=1 selected="Layout 1 (Far-end with self-view)">Layout 1 (Far-end with self-view)</option>
+                <option value=2 >Layout 2 (Far-end only)</option>
+                <option value=3>Layout 3 (Self-view only)</option>
+              </select>
+            </div>
+
+            <div class="settingsPopupHead">Advanced Options*</div>
+            <div>
+              <input type="checkbox" id="chatReceive" class="optionsCheckbox" name="chatReceive" disabled checked>Enable Chat Receive (Pexip Meetings)</input>
+              <input type="checkbox" id="showMediaStatistics" class="optionsCheckbox" name="showMediaStatistics" disabled checked>Show Media Statistics</input>
+              <input type="checkbox" id="disableVp9" class="optionsCheckbox" name="disableVp9" disabled checked>Disable VP9 Video Codec</input>
+              <input type="checkbox" id="disableVp8" class="optionsCheckbox" name="disableVp8" disabled >Disable VP8 Video Codec</input>
+            
+            </div>
+
+            <div class="settingsPopupHead">Maximum Call Rate (kbps)</div>
+            <div class="settingsPopupBody">
+              <select name="pexMaxCallRate" id="pexMaxCallRate" value=2464 onchange="savePexipCallRate(this.value)">
+                <option value=6144>6144</option>
+                <option value=2464 selected=2464>2464</option>
+                <option value=1280>1280</option>
+                <option value=768>768</option>
+              </select>
+            </div>
+
+            <div class="settingsPopupHead">Video Device</div>
+            <div class="settingsPopupBody">
+              <select name="videoDevices" id="videoDevices" class="videoDevices" onchange="savePexipVideoDeviceID(this.value)">
+                <option value="loading">Loading...</option>
+              </select>
+            </div>
+
+            <div class="settingsPopupHead">Audio Device</div>
+            <div class="settingsPopupBody">
+              <select name="audioDevices" id="audioDevices" class="audioDevices" onchange="savePexipAudioDeviceID(this.value)">
+                <option value="loading">Loading...</option>
+              </select>
+            </div>
+
+    
+            <div class="settingsPopupButton">
+              <button class= "button" onClick="closeSettingsWithoutRestart()" hidden>SAVE / NO RE-START </button>
+              <button class= "button" onClick="testCall()">TEST CALL</button>
+              <button class= "button" onClick="showDebug()">SHOW DEBUG</button>
+              <button class= "button" onClick="exportQRConfig()">QR CLIPBOARD</button>
+              <button class= "button" onClick="closeSettings()">APPLY SETTINGS</button>
+              <button class= "button" onClick="resetSettings()">CLEAR SETTINGS </button>
+              
+            </div>
+            <div></div>
+            <div class="settingsNotes" width="95%">
+              The web application requires Pexip Infinity v30 or above for full functionaility.<br>
+              A supported camera and microphone must be connected and device permissions granted.<br> 
+              Device selection is not available on AndroidTV.<br> 
+              Content is delivered via presentation-in-mix a co-mingled video+content channel.<br>
+              A configuration QR must be exported from a desktop browser for use with a 3rd party QR generator.<br>
+              This is not a supported application and utilises 3rd party libaries and services including;<br>
+              PUBNUB IOT (Virtual Remote), TOASTIFY notifications and ZXING QR reader.<br>
+              This application was developed from sample at https://developer.pexip.com so please check it out.<br>
+              *Not currently (fully) implemented.<br>
+              greg.walker@pexip.com - v1.0.0.15 (15-SEP-2022)<br>
+              <br>
+            </div>
+            <div id="browserLanguage" class="browserLanguage" ></div>
+            <div id="browserUserAgent" class="browserUserAgent" ></div>
+           
+          </div>
+        </div>
+      </div>
+
+      <div class="debugContainer" id="debugContainer" style="display: none;">
+        <div class="debugText"><textarea id="debugTextarea" readonly></textarea></div>
+        <div class="debugButtons"><button onClick="hideDebug()">Close</button> <button onClick="clearDebug()">Clear Output</button></div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+

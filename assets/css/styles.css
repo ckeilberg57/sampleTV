@@ -1,0 +1,714 @@
+
+
+html,
+body {
+  font-family: 'Roboto';
+  padding: 0;
+  margin: 0;
+  overflow: hidden; /* Hide scrollbars */
+  color: white;
+  font-size: 12px;
+  background-color: #0a2136;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.5) 100%
+    ),
+    url('');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.pageContainer {
+  width: 100vw;
+  height: 100vh;
+
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.pageContainer .logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  height: 10vh;
+
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.pageContainer .clock {
+  text-align: right;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  opacity: 0.95;
+}
+
+.pageContainer .clock .time {
+  font-weight: 600;
+  margin: 0px;
+  font-size: 4.5vh;
+  
+}
+
+.pageContainer .clock .date {
+  font-weight: 500;
+  margin: 0px;
+  font-size: 2.5vh;
+}
+
+.pageContainer .footer_logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  height: 4vh;
+  opacity: 0.7;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.showToast:focus {
+  outline: none;
+}
+
+.footer_logo:focus {
+  outline: none; 
+  }
+
+.pageContainer .homeMessageContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: left;
+  position: absolute;
+  left: 20px;
+  top: 20%;
+  font-weight: 600;
+  font-size: 5.5vh;
+  margin: 5px;
+  text-align: left;
+  width: 80%;
+
+  /* background-color: #00B0F0; */
+  /* background-color: #ED1D24; */
+}
+
+.pageContainer .homeMessageContainer .scanIcon {
+  margin: 5px;
+  padding: 10px;
+  height: 2.5em;
+}
+
+.pageContainer .callContainer .callVideoContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.pageContainer .callContainer .callVideoContainer video {
+  width: 100vw;
+}
+
+.pageContainer .callContainer .callVideoControls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: right;
+  -ms-flex-align: right;
+  align-items: right;
+  -webkit-box-pack: right;
+  -ms-flex-pack: right;
+  justify-content: right;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+
+.pageContainer .callContainer .callVideoControls .callVideoControl {
+  height: 5vh;
+  width: 5vh;
+  margin: 10px;
+  line-height: 5vh;
+  text-align: center;
+  border-radius: 5vh;
+  font-size: 3vh;
+  background-color: rgba(0, 176, 240);
+  padding: 5px;
+  opacity: 0.2;
+}
+
+.pageContainer .callContainer .callVideoControls .callVideoControl:hover {
+  cursor: pointer;
+  color: #00b0f0;
+}
+
+.pageContainer
+  .callContainer
+  .callVideoControls
+  .callVideoControl
+  .fa-microphone-slash,
+.pageContainer
+  .callContainer
+  .callVideoControls
+  .callVideoControl
+  .fa-video-slash {
+  color: red;
+}
+
+.pageContainer .callContainer .callVideoControls .active {
+  color: #c00000;
+}
+
+.pageContainer .callContainer .callVideoControls .active:hover {
+  cursor: pointer;
+  color: #d9381e;
+}
+
+.pageContainer .callContainer .callPinRequestContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.pageContainer .callContainer .callPinRequestContainer .callPinRequestWindow {
+  border-radius: 15px;
+  background-color: #fff;
+  padding: 15px;
+}
+
+.pageContainer
+  .callContainer
+  .callPinRequestContainer
+  .callPinRequestWindow
+  .callPinTitle {
+  text-align: center;
+  font-weight: 600;
+}
+
+.pageContainer
+  .callContainer
+  .callPinRequestContainer
+  .callPinRequestWindow
+  .callPinContent {
+  margin-top: 15px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto;
+  grid-template-columns: auto auto;
+}
+
+.pageContainer
+  .callContainer
+  .callPinRequestContainer
+  .callPinRequestWindow
+  .callPinContent
+  .callPinContentHead {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 5px;
+  font-weight: 600;
+}
+
+.pageContainer
+  .callContainer
+  .callPinRequestContainer
+  .callPinRequestWindow
+  .callPinContent
+  .callPinContentBody {
+  padding: 5px;
+}
+
+.pageContainer
+  .callContainer
+  .callPinRequestContainer
+  .callPinRequestWindow
+  .callPinContent
+  .callPinContentBody
+  input {
+  border-radius: 5px;
+  border: 1px solid #333;
+  padding: 10px;
+}
+
+.pageContainer
+  .callContainer
+  .callPinRequestContainer
+  .callPinRequestWindow
+  .callPinContentButton {
+  margin-top: 5px;
+  width: 100%;
+  text-align: center;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1 / span 2;
+}
+
+.pageContainer
+  .callContainer
+  .callPinRequestContainer
+  .callPinRequestWindow
+  .callPinContentButton
+  button {
+  border-radius: 5px;
+  border: 1px solid #333;
+  padding: 10px;
+}
+
+.pageContainer
+  .callContainer
+  .callPinRequestContainer
+  .callPinRequestWindow
+  .callPinContentButton
+  button:hover {
+  cursor: pointer;
+}
+
+.pageContainer .settingsButton {
+  opacity: 0.3;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+}
+
+.settingsButton:focus {
+  outline: none; 
+  opacity: 0.8;
+  }
+  
+
+.pageContainer .debugButton {
+  opacity: 0.3;
+  position: absolute;
+  right: 7vh;
+  bottom: 5px;
+}
+
+.pageContainer .browserUserAgent {
+  text-align: left;
+  font-weight: 300;
+  font-size: 0.7em;
+}
+
+.pageContainer .browserLanguage {
+  text-align: left;
+  font-weight: 300;
+  font-size: 0.7em;
+}
+
+
+.pageContainer .statusZone {
+  font-size: 1.5rem;
+  opacity: 0.3;
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.pageContainer .statusZone .statusHeading {
+  font-size: 0.9em;
+  font-weight: 300;
+  margin: 1px;
+  padding: 1px;
+}
+
+.pageContainer .statusZone .statusBody {
+  font-size: 0.8em;
+  font-weight: 300;
+  margin: 2px;
+  padding: 0px;
+}
+
+.pageContainer .settingsButton .fa-gear {
+  height: 4vh;
+  width: 4vh;
+  line-height: 4vh;
+  text-align: center;
+  border:2px solid white;
+  border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+  font-size: 3.5vh;
+  background-color: #0EBEC7;
+  padding: 1vh;
+}
+
+.pageContainer .settingsButton:hover {
+  opacity: 0.8;
+}
+
+.pageContainer .debugButton .fa-bug {
+  height: 4vh;
+  width: 4vh;
+  line-height: 4vh;
+  text-align: center;
+  border-radius: 4vh;
+  font-size: 3.5vh;
+  background-color: rgba(0, 176, 240);
+  padding: 1vh;
+}
+
+.pageContainer .debugButton:hover {
+  opacity: 0.7;
+}
+
+.button {
+  color: black;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 20px;
+  padding: 20px;
+  
+}
+
+
+.button:hover {
+  background-color: #0EBEC7; /* Green:  #4caf50     Pexip Aqua: #0EBEC7 */
+  color: white;
+  outline: none; 
+}
+
+.settingsNotes {
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+.pageContainer .callSelfviewContainer {
+  height: 17vh;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  outline: 4px solid rgba(255, 108, 2, 0.3);
+  outline-offset: -8px;
+}
+
+.pageContainer .callSelfviewContainer video {
+  height: 17vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.pageContainer .settingsContainer {
+  color: black;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.pageContainer .settingsContainer .settingsPopup {
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 90;
+}
+
+.optionsCheckbox {
+ text-align: left;
+ vertical-align: middle;
+ margin: 5px;
+}
+
+.pageContainer .settingsContainer .settingsPopup .settingsPopupTitle {
+  text-align: center;
+  font-size: 1.4em;
+  font-weight: 600;
+  margin: 10px;
+}
+
+.pageContainer .settingsContainer .settingsPopup .settingsPopupContent {
+  margin-top: 5px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 4fr;
+  grid-template-columns: 1fr 4fr;
+  font-size: 0.9em;
+  font-weight: 300;
+}
+
+.pageContainer
+  .settingsContainer
+  .settingsPopup
+  .settingsPopupContent
+  .settingsPopupHead {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 2px;
+  font-weight: 600;
+}
+
+.pageContainer
+  .settingsContainer
+  .settingsPopup
+  .settingsPopupContent
+  .settingsPopupBody {
+  padding: 2px;
+  font-weight: 300;
+  font-size: 0.8em;
+}
+
+.pageContainer
+  .settingsContainer
+  .settingsPopup
+  .settingsPopupContent
+  .settingsPopupBody
+  input {
+  border-radius: 5px;
+  border: 1px solid #333;
+  padding: 2px;
+  width: 95%;
+
+}
+
+.pageContainer
+  .settingsContainer
+  .settingsPopup
+  .settingsPopupContent
+  .settingsPopupBody
+  select {
+  border-radius: 5px;
+  border: 1px solid #333;
+  padding: 2px;
+  width: 95%;
+}
+
+.pageContainer
+  .settingsContainer
+  .settingsPopup
+  .settingsPopupContent
+  .settingsPopupBody
+  select:hover {
+  cursor: pointer;
+}
+
+.pageContainer
+  .settingsContainer
+  .settingsPopup
+  .settingsPopupContent
+  .settingsPopupButton {
+  margin: 5px;
+  width: 100%;
+  text-align: center;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1 / span 2;
+}
+
+.pageContainer
+  .settingsContainer
+  .settingsPopup
+  .settingsPopupContent
+  .settingsPopupButton
+  button {
+  border-radius: 5px;
+  border: 1px solid #333;
+  padding: 5px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.pageContainer
+  .settingsContainer
+  .settingsPopup
+  .settingsPopupContent
+  .settingsPopupButton
+  button:hover {
+  cursor: pointer;
+}
+
+.debugContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+}
+
+.debugContainer .debugText {
+  width: 100%;
+  height: 100%;
+  font-size: 8px;
+}
+
+.debugContainer .debugText textarea {
+  width: 95%;
+  height: 90%;
+  margin: 5px;
+  padding: 5px;
+}
+
+.debugContainer .debugButtons {
+  margin-top: 10px;
+}
+
+.newControls{
+  width: auto;
+  position: fixed;
+  top: 50%;
+  right: -170px;
+  margin-left: 50px;
+  z-index: 99;
+}
+
+@keyframes controls-fade-in {
+  0%   {width: 0px;
+        opacity: 0.3;}
+  25%  {width: 450px;
+        opacity: 0.7;}
+  50%  {width: 450px;
+        opacity: 0.5;}
+  
+}
+
+.animate {
+    animation-name: controls-fade-in;
+    animation-duration: 4s;
+}
+
+
+.btn-square{
+  width: 220px;
+  height: 60px;
+  border: none;
+  color: white;
+  opacity: 0.4;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 3px #060D18;
+  outline: 2px solid white;
+  text-align:left;
+  font-size: 24px;
+  animation-name: controls-fade-in;
+  animation-duration: 5s;
+  transition: transform 500ms;
+}
+.btn.input {
+  opacity: 1;
+}
+
+.btn-square:active{ 
+  background-color: #ffffff;
+  background-image:(linear-gradient(left bottom, #ffffff 0%,#e5e5e5 100%));
+  box-shadow: none; 
+  outline: none;
+  border: none;
+}
+
+.btn-square:hover{ 
+  box-shadow: 0px 0px 1px 1px #060D18;
+
+  opacity: 0.7;
+  outline: 2px solid white;
+  
+   transform: translateX(-120px);
+   transition: transform 500ms;
+}
+
+.btn-square:focus{ 
+  box-shadow: 0px 0px 1px 1px #060D18; 
+  opacity: 0.7;
+  outline: 2px solid white;
+ 
+  transition: transform 500ms;
+ }
+
+
+.btn-red{
+  background-color: #a90329;
+  background-image: (linear-gradient(left bottom, #a90329 0%,#8f0222 44%,#6d0019 100%));
+}
+
+.btn-green{
+  background-color: #007f2c;
+  background-image: (linear-gradient(left bottom, #007f2c 0%,#00591a 100%));
+}
+
+.btn-orange{
+  background-color: #f7be42;
+  background-image: (linear-gradient(left bottom, #f7be42 0%,#bf8001 100%));
+}
+
+.btn-blue{
+  background-color: #499bea;
+  background-image: (linear-gradient(left bottom, #499bea 0%,#1755aa 100%));
+}
+
+.btn-black{
+  background-color: #000000;
+  background-image:(linear-gradient(left bottom, #000000 0%,#00000a 100%));
+}
+
+/*# sourceMappingURL=styles.css.map */
